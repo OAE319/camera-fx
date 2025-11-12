@@ -8,18 +8,14 @@ body, html {
     background-color: #000;
 }
 
-/* 畫布 (Canvas) 填滿全螢幕 
- 我們會用 object-fit: cover 讓它像相機一樣填滿 (可能會裁切)
-*/
+/* 畫布 (Canvas) 填滿全螢幕 */
 #display-canvas {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* 關鍵：保持比例並填滿，修正拉伸 */
 }
 
-/* 隱藏原始的 video 元素。
- 我們只需要它的數據，不需要看到它。
-*/
+/* 隱藏原始的 video 元素 */
 #video-feed {
     display: none;
 }
@@ -35,6 +31,15 @@ body, html {
     padding: 15px;
     box-sizing: border-box; /* 讓 padding 不會撐爆寬度 */
     font-family: Arial, sans-serif;
+    
+    /* **[Bug 2 修正]** 加入轉場動畫 */
+    transition: transform 0.3s ease-in-out; 
+}
+
+/* **[Bug 2 修正]** 新增 .hidden 樣式 */
+.controls.hidden {
+    /* 往下移出畫面外 */
+    transform: translateY(100%); 
 }
 
 .control-group {
